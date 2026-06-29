@@ -1,0 +1,216 @@
+{
+  "model_type": "Multiple Linear Regression",
+  "feature_columns": [
+    "area",
+    "bedrooms",
+    "bathrooms",
+    "stories",
+    "mainroad",
+    "guestroom",
+    "basement",
+    "hotwaterheating",
+    "airconditioning",
+    "parking",
+    "prefarea",
+    "furnishing_furnished",
+    "furnishing_semi-furnished",
+    "furnishing_unfurnished"
+  ],
+  "coefficients": {
+    "area": 235.9688,
+    "bedrooms": 76778.7016,
+    "bathrooms": 1094444.7861,
+    "stories": 407476.595,
+    "mainroad": 367919.9477,
+    "guestroom": 231610.0372,
+    "basement": 390251.1762,
+    "hotwaterheating": 684649.8853,
+    "airconditioning": 791426.7358,
+    "parking": 224841.9133,
+    "prefarea": 629890.5653,
+    "furnishing_furnished": 180175.6266,
+    "furnishing_semi-furnished": 53293.809,
+    "furnishing_unfurnished": -233469.4356
+  },
+  "intercept": 79856.731,
+  "metrics": {
+    "train_r2": 0.6859,
+    "test_r2": 0.6529,
+    "test_rmse": 1324506.96,
+    "test_mae": 970043.4,
+    "train_samples": 436,
+    "test_samples": 109,
+    "total_samples": 545
+  },
+  "feature_importance": [
+    {
+      "name": "bathrooms",
+      "coefficient": 1094444.7861,
+      "abs_coefficient": 1094444.7861
+    },
+    {
+      "name": "airconditioning",
+      "coefficient": 791426.7358,
+      "abs_coefficient": 791426.7358
+    },
+    {
+      "name": "hotwaterheating",
+      "coefficient": 684649.8853,
+      "abs_coefficient": 684649.8853
+    },
+    {
+      "name": "prefarea",
+      "coefficient": 629890.5653,
+      "abs_coefficient": 629890.5653
+    },
+    {
+      "name": "stories",
+      "coefficient": 407476.595,
+      "abs_coefficient": 407476.595
+    },
+    {
+      "name": "basement",
+      "coefficient": 390251.1762,
+      "abs_coefficient": 390251.1762
+    },
+    {
+      "name": "mainroad",
+      "coefficient": 367919.9477,
+      "abs_coefficient": 367919.9477
+    },
+    {
+      "name": "furnishing_unfurnished",
+      "coefficient": -233469.4356,
+      "abs_coefficient": 233469.4356
+    },
+    {
+      "name": "guestroom",
+      "coefficient": 231610.0372,
+      "abs_coefficient": 231610.0372
+    },
+    {
+      "name": "parking",
+      "coefficient": 224841.9133,
+      "abs_coefficient": 224841.9133
+    },
+    {
+      "name": "furnishing_furnished",
+      "coefficient": 180175.6266,
+      "abs_coefficient": 180175.6266
+    },
+    {
+      "name": "bedrooms",
+      "coefficient": 76778.7016,
+      "abs_coefficient": 76778.7016
+    },
+    {
+      "name": "furnishing_semi-furnished",
+      "coefficient": 53293.809,
+      "abs_coefficient": 53293.809
+    },
+    {
+      "name": "area",
+      "coefficient": 235.9688,
+      "abs_coefficient": 235.9688
+    }
+  ],
+  "feature_stats": {
+    "mainroad": {
+      "type": "binary",
+      "labels": [
+        "No",
+        "Yes"
+      ]
+    },
+    "guestroom": {
+      "type": "binary",
+      "labels": [
+        "No",
+        "Yes"
+      ]
+    },
+    "basement": {
+      "type": "binary",
+      "labels": [
+        "No",
+        "Yes"
+      ]
+    },
+    "hotwaterheating": {
+      "type": "binary",
+      "labels": [
+        "No",
+        "Yes"
+      ]
+    },
+    "airconditioning": {
+      "type": "binary",
+      "labels": [
+        "No",
+        "Yes"
+      ]
+    },
+    "prefarea": {
+      "type": "binary",
+      "labels": [
+        "No",
+        "Yes"
+      ]
+    },
+    "area": {
+      "type": "numeric",
+      "min": 1650,
+      "max": 16200,
+      "mean": 5150.5,
+      "median": 4600
+    },
+    "bedrooms": {
+      "type": "numeric",
+      "min": 1,
+      "max": 6,
+      "mean": 3.0,
+      "median": 3
+    },
+    "bathrooms": {
+      "type": "numeric",
+      "min": 1,
+      "max": 4,
+      "mean": 1.3,
+      "median": 1
+    },
+    "stories": {
+      "type": "numeric",
+      "min": 1,
+      "max": 4,
+      "mean": 1.8,
+      "median": 2
+    },
+    "parking": {
+      "type": "numeric",
+      "min": 0,
+      "max": 3,
+      "mean": 0.7,
+      "median": 0
+    },
+    "furnishingstatus": {
+      "type": "categorical",
+      "categories": [
+        "furnished",
+        "semi-furnished",
+        "unfurnished"
+      ],
+      "encoded_columns": [
+        "furnishing_furnished",
+        "furnishing_semi-furnished",
+        "furnishing_unfurnished"
+      ]
+    }
+  },
+  "price_stats": {
+    "min": 1750000,
+    "max": 13300000,
+    "mean": 4766729.25,
+    "median": 4340000,
+    "std": 1870439.62
+  }
+}

@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>House Price Predictor — Multiple Linear Regression</title>
+    <meta name="description" content="Predict house prices using a Multiple Linear Regression model trained on real housing data. Input property features and get instant price estimates.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="bg-animation">
+        <div class="bg-orb bg-orb-1"></div>
+        <div class="bg-orb bg-orb-2"></div>
+        <div class="bg-orb bg-orb-3"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#" class="nav-logo">
+                <span class="logo-icon">🏠</span>
+                <span class="logo-text">PricePredict<span class="logo-accent">AI</span></span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="#predictor" class="nav-link">Predictor</a></li>
+                <li><a href="#insights" class="nav-link">Model Insights</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero" id="hero">
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span class="badge-dot"></span>
+                Multiple Linear Regression Model
+            </div>
+            <h1 class="hero-title">
+                Predict House Prices
+                <span class="hero-title-accent">with Machine Learning</span>
+            </h1>
+            <p class="hero-subtitle">
+                Powered by a regression model trained on 545 real housing records.
+                Input property features below and get an instant price estimate.
+            </p>
+            <a href="#predictor" class="hero-cta">
+                <span>Start Predicting</span>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="12" y1="5" x2="12" y2="19"></line>
+                    <polyline points="19 12 12 19 5 12"></polyline>
+                </svg>
+            </a>
+        </div>
+        <div class="hero-visual">
+            <div class="hero-card">
+                <div class="hero-card-header">
+                    <span class="hero-card-dot red"></span>
+                    <span class="hero-card-dot yellow"></span>
+                    <span class="hero-card-dot green"></span>
+                </div>
+                <div class="hero-card-body">
+                    <code class="hero-code">
+                        <span class="code-keyword">from</span> sklearn.linear_model <span class="code-keyword">import</span> LinearRegression<br>
+                        <br>
+                        <span class="code-comment"># Train the model</span><br>
+                        model = LinearRegression()<br>
+                        model.<span class="code-func">fit</span>(X_train, y_train)<br>
+                        <br>
+                        <span class="code-comment"># Predict</span><br>
+                        price = model.<span class="code-func">predict</span>(features)<br>
+                        <span class="code-keyword">print</span>(<span class="code-string">f"${price:,.0f}"</span>)
+                    </code>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Predictor Section -->
+    <section class="section" id="predictor">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Prediction Engine</span>
+                <h2 class="section-title">Configure Property Features</h2>
+                <p class="section-subtitle">Adjust the parameters below to match the property you want to evaluate</p>
+            </div>
+
+            <div class="predictor-layout">
+                <!-- Input Form -->
+                <div class="form-panel glass-card">
+                    <div class="form-section">
+                        <h3 class="form-section-title">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="9" y1="3" x2="9" y2="21"/></svg>
+                            Property Dimensions
+                        </h3>
+
+                        <div class="form-group">
+                            <label class="form-label" for="area">
+                                Area (sq ft)
+                                <span class="form-value" id="area-value">5000</span>
+                            </label>
+                            <input type="range" id="area" class="slider" min="1650" max="16200" value="5000" step="50">
+                            <div class="slider-range">
+                                <span>1,650</span>
+                                <span>16,200</span>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label" for="bedrooms">Bedrooms</label>
+                                <div class="stepper" id="bedrooms-stepper">
+                                    <button class="stepper-btn" data-action="dec" data-target="bedrooms">−</button>
+                                    <span class="stepper-value" id="bedrooms-value">3</span>
+                                    <input type="hidden" id="bedrooms" value="3">
+                                    <button class="stepper-btn" data-action="inc" data-target="bedrooms">+</button>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="bathrooms">Bathrooms</label>
+                                <div class="stepper" id="bathrooms-stepper">
+                                    <button class="stepper-btn" data-action="dec" data-target="bathrooms">−</button>
+                                    <span class="stepper-value" id="bathrooms-value">1</span>
+                                    <input type="hidden" id="bathrooms" value="1">
+                                    <button class="stepper-btn" data-action="inc" data-target="bathrooms">+</button>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="stories">Stories</label>
+                                <div class="stepper" id="stories-stepper">
+                                    <button class="stepper-btn" data-action="dec" data-target="stories">−</button>
+                                    <span class="stepper-value" id="stories-value">2</span>
+                                    <input type="hidden" id="stories" value="2">
+                                    <button class="stepper-btn" data-action="inc" data-target="stories">+</button>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="parking">Parking</label>
+                                <div class="stepper" id="parking-stepper">
+                                    <button class="stepper-btn" data-action="dec" data-target="parking">−</button>
+                                    <span class="stepper-value" id="parking-value">1</span>
+                                    <input type="hidden" id="parking" value="1">
+                                    <button class="stepper-btn" data-action="inc" data-target="parking">+</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-divider"></div>
+
+                    <div class="form-section">
+                        <h3 class="form-section-title">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                            Property Features
+                        </h3>
+
+                        <div class="toggle-grid">
+                            <div class="toggle-group">
+                                <label class="toggle-label" for="mainroad">
+                                    <span class="toggle-text">Main Road Access</span>
+                                    <div class="toggle-switch">
+                                        <input type="checkbox" id="mainroad" checked>
+                                        <span class="toggle-slider"></span>
+                                    </div>
+                                </label>
+                            </div>
+                            <div class="toggle-group">
+                                <label class="toggle-label" for="guestroom">
+                                    <span class="toggle-text">Guest Room</span>
+                                    <div class="toggle-switch">
+                                        <input type="checkbox" id="guestroom">
+                                        <span class="toggle-slider"></span>
+                                    </div>
+                                </label>
+                            </div>
+                            <div class="toggle-group">
+                                <label class="toggle-label" for="basement">
+                                    <span class="toggle-text">Basement</span>
+                                    <div class="toggle-switch">
+                                        <input type="checkbox" id="basement">
+                                        <span class="toggle-slider"></span>
+                                    </div>
+                                </label>
+                            </div>
+                            <div class="toggle-group">
+                                <label class="toggle-label" for="hotwaterheating">
+                                    <span class="toggle-text">Hot Water Heating</span>
+                                    <div class="toggle-switch">
+                                        <input type="checkbox" id="hotwaterheating">
+                                        <span class="toggle-slider"></span>
+                                    </div>
+                                </label>
+                            </div>
+                            <div class="toggle-group">
+                                <label class="toggle-label" for="airconditioning">
+                                    <span class="toggle-text">Air Conditioning</span>
+                                    <div class="toggle-switch">
+                                        <input type="checkbox" id="airconditioning">
+                                        <span class="toggle-slider"></span>
+                                    </div>
+                                </label>
+                            </div>
+                            <div class="toggle-group">
+                                <label class="toggle-label" for="prefarea">
+                                    <span class="toggle-text">Preferred Area</span>
+                                    <div class="toggle-switch">
+                                        <input type="checkbox" id="prefarea">
+                                        <span class="toggle-slider"></span>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-divider"></div>
+
+                    <div class="form-section">
+                        <h3 class="form-section-title">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 7V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v3"/></svg>
+                            Furnishing Status
+                        </h3>
+                        <div class="radio-group" id="furnishing-group">
+                            <label class="radio-card" for="furnished">
+                                <input type="radio" id="furnished" name="furnishing" value="furnished">
+                                <div class="radio-card-content">
+                                    <span class="radio-icon">🛋️</span>
+                                    <span class="radio-text">Furnished</span>
+                                </div>
+                            </label>
+                            <label class="radio-card" for="semi-furnished">
+                                <input type="radio" id="semi-furnished" name="furnishing" value="semi-furnished" checked>
+                                <div class="radio-card-content">
+                                    <span class="radio-icon">🪑</span>
+                                    <span class="radio-text">Semi-Furnished</span>
+                                </div>
+                            </label>
+                            <label class="radio-card" for="unfurnished">
+                                <input type="radio" id="unfurnished" name="furnishing" value="unfurnished">
+                                <div class="radio-card-content">
+                                    <span class="radio-icon">📦</span>
+                                    <span class="radio-text">Unfurnished</span>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <button class="predict-btn" id="predict-btn">
+                        <span class="predict-btn-text">Predict Price</span>
+                        <span class="predict-btn-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M5 12h14M12 5l7 7-7 7"/>
+                            </svg>
+                        </span>
+                    </button>
+                </div>
+
+                <!-- Results Panel -->
+                <div class="results-panel">
+                    <div class="result-card glass-card" id="result-card">
+                        <div class="result-header">
+                            <span class="result-label">Estimated Price</span>
+                            <div class="result-badge" id="result-confidence">
+                                <span class="badge-dot"></span>
+                                Model Ready
+                            </div>
+                        </div>
+                        <div class="result-price-wrapper">
+                            <span class="result-currency">$</span>
+                            <span class="result-price" id="result-price">0</span>
+                        </div>
+                        <div class="result-formula" id="result-formula">
+                            <span class="formula-label">Formula:</span>
+                            <code>price = intercept + Σ(βᵢ × xᵢ)</code>
+                        </div>
+                    </div>
+
+                    <!-- Quick Stats -->
+                    <div class="stats-grid">
+                        <div class="stat-card glass-card">
+                            <span class="stat-icon">📊</span>
+                            <span class="stat-value" id="stat-r2">—</span>
+                            <span class="stat-label">R² Score</span>
+                        </div>
+                        <div class="stat-card glass-card">
+                            <span class="stat-icon">📈</span>
+                            <span class="stat-value" id="stat-rmse">—</span>
+                            <span class="stat-label">RMSE</span>
+                        </div>
+                        <div class="stat-card glass-card">
+                            <span class="stat-icon">📉</span>
+                            <span class="stat-value" id="stat-mae">—</span>
+                            <span class="stat-label">MAE</span>
+                        </div>
+                        <div class="stat-card glass-card">
+                            <span class="stat-icon">🏘️</span>
+                            <span class="stat-value" id="stat-samples">—</span>
+                            <span class="stat-label">Samples</span>
+                        </div>
+                    </div>
+
+                    <!-- Equation Card -->
+                    <div class="equation-card glass-card" id="equation-card">
+                        <h3 class="equation-title">Regression Equation</h3>
+                        <div class="equation-content" id="equation-content">
+                            <code>Loading model...</code>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Model Insights Section -->
+    <section class="section section-dark" id="insights">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Analytics</span>
+                <h2 class="section-title">Model Insights</h2>
+                <p class="section-subtitle">Understanding what drives house prices in our regression model</p>
+            </div>
+
+            <div class="insights-layout">
+                <!-- Feature Importance Chart -->
+                <div class="chart-card glass-card">
+                    <h3 class="chart-title">Feature Importance (|Coefficient|)</h3>
+                    <div class="chart-container" id="feature-chart"></div>
+                </div>
+
+                <!-- Model Details -->
+                <div class="details-card glass-card">
+                    <h3 class="chart-title">Model Details</h3>
+                    <div class="details-grid">
+                        <div class="detail-item">
+                            <span class="detail-label">Algorithm</span>
+                            <span class="detail-value">Multiple Linear Regression</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Library</span>
+                            <span class="detail-value">scikit-learn (sklearn)</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Train/Test Split</span>
+                            <span class="detail-value">80% / 20%</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Features Used</span>
+                            <span class="detail-value" id="detail-features">—</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Training R²</span>
+                            <span class="detail-value" id="detail-train-r2">—</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Testing R²</span>
+                            <span class="detail-value" id="detail-test-r2">—</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Intercept</span>
+                            <span class="detail-value" id="detail-intercept">—</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Avg Price</span>
+                            <span class="detail-value" id="detail-avg-price">—</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="section" id="about">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Information</span>
+                <h2 class="section-title">About This Project</h2>
+                <p class="section-subtitle">Understanding the dataset and methodology</p>
+            </div>
+
+            <div class="about-grid">
+                <div class="about-card glass-card">
+                    <div class="about-icon">📊</div>
+                    <h3>The Dataset</h3>
+                    <p>The Housing Prices Dataset from Kaggle contains 545 records with 13 features covering property area, number of rooms, amenities, and location preferences. Licensed under CC0 Public Domain.</p>
+                </div>
+                <div class="about-card glass-card">
+                    <div class="about-icon">🧠</div>
+                    <h3>Multiple Linear Regression</h3>
+                    <p>Our model uses Ordinary Least Squares (OLS) to find the best-fit hyperplane through the feature space. The formula: <code>ŷ = β₀ + β₁x₁ + β₂x₂ + ... + βₙxₙ</code></p>
+                </div>
+                <div class="about-card glass-card">
+                    <div class="about-icon">⚡</div>
+                    <h3>Client-Side Prediction</h3>
+                    <p>The model coefficients are exported from Python to JSON. All predictions happen directly in your browser using JavaScript — no server requests needed for inference.</p>
+                </div>
+                <div class="about-card glass-card">
+                    <div class="about-icon">🎯</div>
+                    <h3>Feature Engineering</h3>
+                    <p>Binary features (yes/no) are encoded as 1/0. Categorical features (furnishing status) are one-hot encoded. All 12 original features are used for prediction.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <span class="logo-icon">🏠</span>
+                    <span class="logo-text">PricePredict<span class="logo-accent">AI</span></span>
+                </div>
+                <p class="footer-text">
+                    Built with Python (scikit-learn) &amp; JavaScript • Dataset by M Yasser H on Kaggle
+                </p>
+                <p class="footer-copyright">
+                    Assignment 1 — House Price Prediction using Multiple Linear Regression
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
